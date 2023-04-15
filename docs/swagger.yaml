@@ -1,0 +1,536 @@
+basePath: /
+definitions:
+  models.Comment:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      msg:
+        type: string
+      photo_id:
+        type: integer
+      updated_at:
+        type: string
+      userID:
+        type: integer
+    type: object
+  models.CommentPostDTO:
+    properties:
+      msg:
+        type: string
+      photo_id:
+        type: integer
+    type: object
+  models.CommentUpdateDTO:
+    properties:
+      msg:
+        type: string
+    type: object
+  models.Photo:
+    properties:
+      caption:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      photo_url:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      userID:
+        type: integer
+    type: object
+  models.PhotoDTO:
+    properties:
+      caption:
+        type: string
+      photo_url:
+        type: string
+      title:
+        type: string
+    type: object
+  models.SocialMedia:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      social_media_url:
+        type: string
+      updated_at:
+        type: string
+      userID:
+        type: integer
+    type: object
+  models.SocialMediaDTO:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        type: string
+    type: object
+  models.TokenDTO:
+    properties:
+      token:
+        type: string
+    type: object
+  models.User:
+    properties:
+      age:
+        type: integer
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  models.UserLoginDTO:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  models.UserRegisterDTO:
+    properties:
+      age:
+        type: integer
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Instagram 'clone' REST API using JWT auth.
+  title: My Gram API
+paths:
+  /comment:
+    get:
+      description: Response with list of all comment as JSON
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Comment'
+            type: array
+      summary: Get All comment
+      tags:
+      - comment
+    post:
+      description: Response with comment that recently added
+      parameters:
+      - description: Comment JSON
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.CommentPostDTO'
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token here
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      summary: Add new comment
+      tags:
+      - comment
+  /comment/{commentID}:
+    delete:
+      description: Response with HTTP Status
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Delete by ID
+        in: path
+        name: commentID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Delete comment by ID
+      tags:
+      - comment
+    get:
+      description: Response specified comment by ID as JSON
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Search by ID
+        in: path
+        name: commentID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      summary: Get comment by ID
+      tags:
+      - comment
+    put:
+      description: Response with updated comment
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Update by ID
+        in: path
+        name: commentID
+        required: true
+        type: string
+      - description: Comment JSON
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.CommentUpdateDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      summary: Update comment by ID
+      tags:
+      - comment
+  /photo:
+    get:
+      description: Response with all photo that exists
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token here
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Photo'
+            type: array
+      summary: Get all photo
+      tags:
+      - photo
+    post:
+      description: Response with photo that recently added
+      parameters:
+      - description: Comment JSON
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.PhotoDTO'
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token here
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+      summary: Add new photo
+      tags:
+      - photo
+  /photo/{photoID}:
+    delete:
+      description: Response with HTTP Status
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Delete by ID
+        in: path
+        name: photoID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Delete photo by ID
+      tags:
+      - photo
+    get:
+      description: Response specified photo by ID as JSON
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Search by ID
+        in: path
+        name: photoID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+      summary: Get photo by ID
+      tags:
+      - photo
+    put:
+      description: Response with updated photo
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Update by ID
+        in: path
+        name: photoID
+        required: true
+        type: string
+      - description: Photo JSON
+        in: body
+        name: photo
+        required: true
+        schema:
+          $ref: '#/definitions/models.PhotoDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Photo'
+      summary: Update photo by ID
+      tags:
+      - photo
+  /social-media:
+    get:
+      description: Response with all social media that exists
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token here
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.SocialMedia'
+            type: array
+      summary: Get all social media
+      tags:
+      - social-media
+    post:
+      description: Response with social media that recently added
+      parameters:
+      - description: Social Media JSON
+        in: body
+        name: socialMedia
+        required: true
+        schema:
+          $ref: '#/definitions/models.SocialMediaDTO'
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token here
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+      summary: Add new social media
+      tags:
+      - social-media
+  /social-media/{smID}:
+    delete:
+      description: Response with HTTP Status
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Delete by ID
+        in: path
+        name: smID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Delete social media by ID
+      tags:
+      - social-media
+    get:
+      description: Response specified social media by ID as JSON
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Search by ID
+        in: path
+        name: smID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+      summary: Get social media by ID
+      tags:
+      - social-media
+    put:
+      description: Response with updated social-media
+      parameters:
+      - default: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5hMTNAZ21haWwuY29tIiwiaWQiOjI0fQ.5-dveXe8_UMto_lpbHk3Nj9xWRQg-4b2vEfyuy6PK1k
+        description: Insert your token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Update by ID
+        in: path
+        name: smID
+        required: true
+        type: string
+      - description: Comment JSON
+        in: body
+        name: social-media
+        required: true
+        schema:
+          $ref: '#/definitions/models.SocialMediaDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialMedia'
+      summary: Update social-media by ID
+      tags:
+      - social-media
+  /users/login:
+    post:
+      description: Response with token that
+      parameters:
+      - description: User JSON
+        in: body
+        name: socialMedia
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserLoginDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TokenDTO'
+      summary: Login to get token
+      tags:
+      - user
+  /users/register:
+    post:
+      description: Response with user that recently added
+      parameters:
+      - description: User JSON
+        in: body
+        name: socialMedia
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserRegisterDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: Register new user
+      tags:
+      - user
+swagger: "2.0"

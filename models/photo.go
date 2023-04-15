@@ -13,6 +13,12 @@ type Photo struct {
 	UserID   uint
 }
 
+type PhotoDTO struct {
+	Title    string `json:"title" form:"title" valid:"required~Photo title is required"`
+	Caption  string `json:"caption" form:"caption"`
+	PhotoUrl string `json:"photo_url" form:"photo_url" valid:"required~Photo URL is required"`
+}
+
 func (p *Photo) BeforeCreate(tx *gorm.DB) (err error) {
 	_, errValidate := govalidator.ValidateStruct(p)
 

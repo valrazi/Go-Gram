@@ -23,7 +23,7 @@ func StartApp() *gin.Engine {
 		photoRouter.POST("/", controllers.AddPhoto)
 		photoRouter.GET("/", controllers.GetAllPhoto)
 		photoRouter.GET("/:photoID", controllers.GetPhotoByID)
-		photoRouter.PATCH("/:photoID", middlewares.PhotoAuthorization(), controllers.UpdatePhoto)
+		photoRouter.PUT("/:photoID", middlewares.PhotoAuthorization(), controllers.UpdatePhoto)
 		photoRouter.DELETE("/:photoID", middlewares.PhotoAuthorization(), controllers.DeletePhoto)
 	}
 
@@ -34,7 +34,7 @@ func StartApp() *gin.Engine {
 		commentRouter.POST("/", controllers.AddComment)
 		commentRouter.GET("/", controllers.GetAllComent)
 		commentRouter.GET("/:commentID", controllers.GetCommentById)
-		commentRouter.PATCH("/:commentID", middlewares.CommentAuthorization(), controllers.UpdateComment)
+		commentRouter.PUT("/:commentID", middlewares.CommentAuthorization(), controllers.UpdateComment)
 		commentRouter.DELETE("/:commentID", middlewares.CommentAuthorization(), controllers.DeleteComment)
 	}
 
@@ -45,7 +45,7 @@ func StartApp() *gin.Engine {
 		socialMediaRouter.POST("/", controllers.AddSocialMedia)
 		socialMediaRouter.GET("/", controllers.GetAllSocialMedia)
 		socialMediaRouter.GET("/:smID", controllers.GetSocialMediaById)
-		socialMediaRouter.PATCH("/:smID", controllers.UpdateSocialMedia)
+		socialMediaRouter.PUT("/:smID", controllers.UpdateSocialMedia)
 		socialMediaRouter.DELETE("/:smID", controllers.DeleteSocialMedia)
 	}
 	return r

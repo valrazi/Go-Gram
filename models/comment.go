@@ -12,6 +12,15 @@ type Comment struct {
 	Message string `json:"msg" form:"msg" valid:"required~Comment message is required"`
 }
 
+type CommentPostDTO struct {
+	PhotoID uint   `json:"photo_id"`
+	Message string `json:"msg" form:"msg" valid:"required~Comment message is required"`
+}
+
+type CommentUpdateDTO struct {
+	Message string `json:"msg" form:"msg" valid:"required~Comment message is required"`
+}
+
 func (p *Comment) BeforeCreate(tx *gorm.DB) (err error) {
 	_, errValidate := govalidator.ValidateStruct(p)
 
