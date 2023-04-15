@@ -115,7 +115,7 @@ definitions:
       username:
         type: string
     type: object
-host: localhost:8080
+host: https://mygram-valrazi.up.railway.app
 info:
   contact: {}
   description: Instagram 'clone' REST API using JWT auth.
