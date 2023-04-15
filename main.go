@@ -13,7 +13,7 @@ import (
 
 // @title     My Gram API
 // @description     Instagram 'clone' REST API using JWT auth.
-// @host      localhost:8080
+// @host      https://mygram-valrazi.up.railway.app
 // @BasePath  /
 
 func main() {
