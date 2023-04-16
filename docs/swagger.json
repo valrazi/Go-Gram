@@ -5,7 +5,7 @@
         "title": "My Gram API",
         "contact": {}
     },
-    "host": "/",
+    "host": "mygram-valrazi.up.railway.app",
     "basePath": "/",
     "paths": {
         "/comment": {
