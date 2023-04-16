@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "Instagram 'clone' REST API using JWT auth.",
-        "title": "My Gram API",
+        "title": "My Gram API by Ivallavi Fahrazi",
         "contact": {}
     },
     "host": "mygram-valrazi.up.railway.app",

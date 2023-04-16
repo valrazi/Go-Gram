@@ -813,10 +813,10 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "",
-	Host:             "https://mygram-valrazi.up.railway.app",
+	Host:             "mygram-valrazi.up.railway.app",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "My Gram API",
+	Title:            "My Gram API by Ivallavi Fahrazi",
 	Description:      "Instagram 'clone' REST API using JWT auth.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

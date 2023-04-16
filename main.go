@@ -11,9 +11,9 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @title     My Gram API
+// @title     My Gram API by Ivallavi Fahrazi
 // @description     Instagram 'clone' REST API using JWT auth.
-// @host      https://mygram-valrazi.up.railway.app
+// @host      mygram-valrazi.up.railway.app
 // @BasePath  /
 
 func main() {

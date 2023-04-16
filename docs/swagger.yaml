@@ -115,11 +115,11 @@ definitions:
       username:
         type: string
     type: object
-host: https://mygram-valrazi.up.railway.app
+host: mygram-valrazi.up.railway.app
 info:
   contact: {}
   description: Instagram 'clone' REST API using JWT auth.
-  title: My Gram API
+  title: My Gram API by Ivallavi Fahrazi
 paths:
   /comment:
     get:
